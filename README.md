@@ -3,6 +3,8 @@
 This repository contains the data on the change of the Belgian population between 1992 and 2024.
 The data is subdivided by commune, sex, and country of origin. 
 
+Data Source: https://statbel.fgov.be/fr/themes/population/structure-de-la-population
+
 The main goal of this project:
   
   1. ETL process
