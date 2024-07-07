@@ -39,7 +39,7 @@ CREATE TABLE FactsBEPop (
 [Albanie] int,
 [Norvège] int,
 [Suisse] int,
-[Serbie/Monténégro/ex-Yougoslavie)] int, 
+[Serbie/Monténégro/ex-Yougoslavie] int, 
 [Bélarus] int, 
 [Ukraine] int, 
 [Russie] int, 
