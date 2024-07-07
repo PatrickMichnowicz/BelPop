@@ -1,12 +1,13 @@
 
 # Power Query cleaning steps (goal: get a clean Excel file)
 
-# Preliminary steps 
+## Excel workbook 1: Belgian population by commune and by country of birth
 
-- Get rid of the title lines on each sheet (can be done through Power Query as well).
-- Get rid of the "source" lines, just below the table. These will create an error when loading data, and cannot be cleaned through Power Query (not recognized as part of a table).
+### Preliminary steps 
 
-# Steps (for all tables)
+- Get rid of the title and "source" lines, above and below the table. These create an error when loading data, and cannot be cleaned through Power Query (not recognized as part of a table).
+
+### Steps (for all tables)
 
 - Delete lines with NULL "CODE INS" values (subtotals).
 - Delete colums containing subtotals by continent.
@@ -15,11 +16,33 @@
 - Delete lines with totals by "Region" and "Arrondissement"
 - Add conditional reference column "Province" (see method below)
 - Add conditional reference column "Région" (see method below)
-- Add reference column "Année"
+- Add reference column "Année", stored as yyyy-01-01, for potential use in a Date Dimension
 - Move the new reference columns to the left, so they appear before the countries
+- Combine all queries to get a single table
+- Load combined query to spreadsheet, save as CSV
 
 
-# Method for the Province and Région columns
+------------------------------------------------------------------------------------------------------------------------------------------
+
+## Excel workbook 2: Belgian population by commune - Population statistics (other than country of birth)
+
+### Pre-clean
+- Erased references to source on each sheet
+- Cleaned column names
+- Deleted totals and subtotals in columns
+
+### Power Query
+- Delete lines with totals by "Region" and "Arrondissement"
+- Add conditional reference column "Province" (see method below)
+- Add conditional reference column "Région" (see method below)
+- Add reference column "Année", stored as yyyy-01-01, for potential use in a Date Dimension
+- Move the new reference columns to the left, so they appear before the countries
+- Combine all queries to get a single table
+- Load combined query to spreadsheet, save as CSV
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+### Method for the Province and Région columns
 Provinces are referenced their CODE INS. For example, all communes with codes 23000 to 24999 belong to the arrondissements composing the province of Flemish Brabant.
 
 Codes for each province + each region: 
