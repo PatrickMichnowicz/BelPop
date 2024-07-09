@@ -1,4 +1,4 @@
-# SSIS ETL
+# SSIS ETL - OLD [Multi-sheet Excel connection]
 
 # Preliminary steps
 - Convert xlsx into 97-03 format

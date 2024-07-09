@@ -27,5 +27,5 @@ The main goal of this project:
   5. Machine Learning?
   - Train an AI to make predictions on population change
   - Answer questions like "When could Belgian population grow over X million?"
-  
-  
+
+

@@ -146,3 +146,29 @@ Once you know the codes, you may create the conditional columns. Conditions look
 IF [CODE INS] >= 91000 THEN "Namur" (Province)
 >>>>>>> 3d60430e58cc4e720b9cbaa35d9762929ac31c74
 IF [Province] = "Namur" THEN "Wallonie"
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+### Note sur le changement des noms de communes et nouveaux codes INS (à partir de 2019)
+
+1. Meeuwen-Gruitrode et Opglabbeek: Code INS 72042 (nouveau nom : Oudsbergen)
+2. Neerpelt et Overpelt: Code INS 72043 (nouveau nom : Pelt)
+3. Kruishoutem et Zingem: Code INS 45068 (nouveau nom : Kruisem)
+4. Aalter et Knesselare: Code INS 44084 (nouveau nom : Aalter)
+5. Deinze et Nevele: Code INS 44083 (nouveau nom : Deinze)
+6. Puurs et Sint-Amands: Code INS 12041 (nouveau nom : Puurs-Sint-Amands)
+7. Waarschoot, Lovendegem & Zomergem: Code INS 44085 (nouveau nom : Lievegem)
+
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+### Changements des étiquettes
+
+#### Lieu de résidence
+- Blégny : Blegny
+- Zwalin : Zwalm
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+Arrondissements: 
+https://fr.wikipedia.org/wiki/Arrondissement_administratif_de_Belgique 
