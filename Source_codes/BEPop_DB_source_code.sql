@@ -116,3 +116,66 @@ CREATE TABLE FactsBEPop (
 [Autres pays d'Océanie] int,
 [Indéterminés/Apatrides] int,
 )
+
+
+
+CREATE TABLE BEGeoTranslations(
+[INS-NIS] int NOT NULL,
+[Deutsh] nvarchar(75),
+[English] nvarchar(75),
+[Français] nvarchar(75),
+[Nederlands] nvarchar(75),
+[Début validité] date,
+[Fin validité] date
+)
+
+
+CREATE TABLE BEPopMovement(
+[INS-NIS] int NOT NULL,
+[Lieu de résidence] nvarchar(100) NOT NULL,
+[Année de référence] date NOT NULL, 
+[Province] nvarchar(50) NOT NULL, 
+[Population totale] int,
+[Naissances] int,
+[Décès] int,
+[Entrées internes] int,
+[Sorties internes] int,
+[Immigrations] int,
+[Changements registre (entrées)] int,
+[Réinscriptions] int,
+[Émigrations] int,
+[Changements de registre (sorties)] int,
+[Rayés d'office] int, 
+[Ajustement statistique] int,
+[Abandons nationalité belge] int,
+[Demandes nationalité belge] int
+)
+
+
+CREATE TABLE BEPopAgeGroups(
+[INS-NIS] int NOT NULL,
+[Lieu de résidence] nvarchar(100) NOT NULL,
+[Année de référence] date NOT NULL, 
+[Sexe] varchar(1),
+[< 5] int,
+[5-9] int,
+[10-14] int,
+[15-19] int,
+[20-24] int,
+[25-29] int,
+[30-34] int,
+[35-39] int,
+[40-44] int,
+[45-49] int,
+[50-54] int,
+[55-59] int,
+[60-64] int,
+[65-69] int,
+[70-74] int,
+[75-79] int,
+[80-84] int,
+[85-89] int,
+[90-94] int,
+[95 <] int,
+)
+
