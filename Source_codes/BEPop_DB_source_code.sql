@@ -1,13 +1,15 @@
+CREATE DATABASE BelgiumPopulation
+GO
 USE BelgiumPopulation
 GO
-CREATE TABLE FactsBEPop (
-[Id_data] int IDENTITY(1,1) CONSTRAINT PK_FactsBEPop PRIMARY KEY,
-[CODE INS] int NOT NULL,
-[Lieu de résidence] nvarchar(100) NOT NULL,
-[Province] nvarchar(100) NOT NULL, 
-[Région] nvarchar(100) NOT NULL, 
-[Année] smallint NOT NULL, 
-[Sexe] nvarchar(15), 
+CREATE TABLE BEPopNationalite (
+[Id_data] int IDENTITY(1,1),
+[INS-NIS] int NOT NULL,
+[lieu de résidence] nvarchar(100) NOT NULL,
+[province] nvarchar(50) NOT NULL, 
+[région] nvarchar(50) NOT NULL, 
+[année de référence] date NOT NULL, 
+[sexe] varchar(1), 
 [Belgique] int, 
 [Allemagne] int, 
 [Autriche] int, 
@@ -39,7 +41,7 @@ CREATE TABLE FactsBEPop (
 [Albanie] int,
 [Norvège] int,
 [Suisse] int,
-[Serbie/Monténégro/ex-Yougoslavie] int, 
+[Serbie/Monténégro/Yougoslavie] int, 
 [Bélarus] int, 
 [Ukraine] int, 
 [Russie] int, 
@@ -48,10 +50,10 @@ CREATE TABLE FactsBEPop (
 [Monténégro] int,
 [Serbie] int,
 [Kosovo] int,
-[Ex-Yougoslavie] int,
-[Ex-Tchécoslovaquie] int,
-[Ex-Union Soviétique] int,
-[Autres pays d'Europe] int,
+[Yougoslavie] int,
+[Tchécoslovaquie] int,
+[Union Soviétique] int,
+[Europe (autres)] int,
 [Corée du Sud] int, 
 [Inde] int,
 [Indonésie] int,
@@ -75,11 +77,11 @@ CREATE TABLE FactsBEPop (
 [Liban] int,
 [Pakistan] int,
 [Turquie] int,
-[Autres pays d'Asie] int, 
+[Asie (autres)] int, 
 [Burundi] int,
 [Cameroun] int,
-[Congo-Kinshasha] int,
-[Congo-Brazza] int, 
+[République démocratique du Congo] int,
+[République du Congo] int, 
 [Côte d'Ivoire] int,
 [Bénin] int,
 [Éthiopie] int,
@@ -100,7 +102,7 @@ CREATE TABLE FactsBEPop (
 [Maroc] int,
 [Mauritanie] int,
 [Tunisie] int,
-[Autres pays d'Afrique] int, 
+[Afrique (autres)] int, 
 [Canada] int,
 [États-Unis] int,
 [Cuba] int,
@@ -111,44 +113,43 @@ CREATE TABLE FactsBEPop (
 [Colombie] int,
 [Équateur] int,
 [Pérou] int,
-[Autres pays d'Amérique] int,
+[Amérique (autres)] int,
 [Australie] int,
-[Autres pays d'Océanie] int,
+[Océanie (autres] int,
 [Indéterminés/Apatrides] int,
 )
 
 
-
 CREATE TABLE BEGeoTranslations(
 [INS-NIS] int NOT NULL,
-[Deutsh] nvarchar(75),
-[English] nvarchar(75),
-[Français] nvarchar(75),
-[Nederlands] nvarchar(75),
-[Début validité] date,
-[Fin validité] date
+[deutsh] nvarchar(75),
+[english] nvarchar(75),
+[français] nvarchar(75),
+[nederlands] nvarchar(75),
+[début validité] date,
+[fin validité] date
 )
 
 
 CREATE TABLE BEPopMovement(
 [INS-NIS] int NOT NULL,
-[Lieu de résidence] nvarchar(100) NOT NULL,
-[Année de référence] date NOT NULL, 
-[Province] nvarchar(50) NOT NULL, 
-[Population totale] int,
-[Naissances] int,
-[Décès] int,
-[Entrées internes] int,
-[Sorties internes] int,
-[Immigrations] int,
-[Changements registre (entrées)] int,
-[Réinscriptions] int,
-[Émigrations] int,
-[Changements de registre (sorties)] int,
-[Rayés d'office] int, 
-[Ajustement statistique] int,
-[Abandons nationalité belge] int,
-[Demandes nationalité belge] int
+[lieu de résidence] nvarchar(100) NOT NULL,
+[année de référence] date NOT NULL, 
+[province] nvarchar(50) NOT NULL, 
+[population totale] int,
+[naissances] int,
+[décès] int,
+[entrées internes] int,
+[sorties internes] int,
+[immigrations] int,
+[changements registre (entrées)] int,
+[réinscriptions] int,
+[émigrations] int,
+[changements de registre (sorties)] int,
+[rayés d'office] int, 
+[ajustement statistique] int,
+[abandons nationalité belge] int,
+[demandes nationalité belge] int
 )
 
 
@@ -179,3 +180,33 @@ CREATE TABLE BEPopAgeGroups(
 [95 <] int,
 )
 
+
+
+CREATE TABLE RefCountries(
+[id_pays] int,
+[français] nvarchar(75),
+[english] nvarchar(75),
+[nederlands] nvarchar(75),
+[continent] nvarchar(30),
+[membre_ue] int,
+[permis_travail_requis] int
+)
+
+
+
+CREATE TABLE RefPopulationUE(
+[pays] nvarchar(75),
+[année de référence] date NOT NULL,
+[sexe] nvarchar(1),
+[naissances] int,
+[décès] int,
+[population] int
+)
+
+
+
+CREATE TABLE RefNativePopulationUE(
+[pays] nvarchar(75),
+[année de référence] date NOT NULL,
+[population native] int
+)

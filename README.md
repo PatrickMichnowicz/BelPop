@@ -24,7 +24,7 @@ The main goal of this project:
   3. Data visuals
   - Create a PowerBI report of some metrics
 
-  5. Machine Learning?
+  4. Machine Learning?
   - Train an AI to make predictions on population change
   - Answer questions like "When could Belgian population grow over X million?"
 
