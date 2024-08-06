@@ -210,3 +210,12 @@ CREATE TABLE RefNativePopulationUE(
 [année de référence] date NOT NULL,
 [population native] int
 )
+
+
+TRUNCATE TABLE BEPopNationalite
+TRUNCATE TABLE BEGeoTranslations
+TRUNCATE TABLE BEPopMovement
+TRUNCATE TABLE BEPopAgeGroups
+TRUNCATE TABLE RefCountries
+TRUNCATE TABLE RefPopulationUE
+TRUNCATE TABLE RefNativePopulationUE
