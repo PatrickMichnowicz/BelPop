@@ -2,14 +2,14 @@ CREATE DATABASE BelgiumPopulation
 GO
 USE BelgiumPopulation
 GO
-CREATE TABLE BEPopNationalite (
+CREATE TABLE BEPopNationalities (
 [Id_data] int IDENTITY(1,1),
-[INS-NIS] int NOT NULL,
+[INS-NIS] varchar(10) NOT NULL,
 [lieu de résidence] nvarchar(100) NOT NULL,
 [province] nvarchar(50) NOT NULL, 
 [région] nvarchar(50) NOT NULL, 
 [année de référence] date NOT NULL, 
-[sexe] varchar(1), 
+[sexe] char(1), 
 [Belgique] int, 
 [Allemagne] int, 
 [Autriche] int, 
@@ -121,7 +121,7 @@ CREATE TABLE BEPopNationalite (
 
 
 CREATE TABLE BEGeoTranslations(
-[INS-NIS] int NOT NULL,
+[INS-NIS] varchar(10) NOT NULL,
 [deutsh] nvarchar(75),
 [english] nvarchar(75),
 [français] nvarchar(75),
@@ -132,7 +132,7 @@ CREATE TABLE BEGeoTranslations(
 
 
 CREATE TABLE BEPopMovement(
-[INS-NIS] int NOT NULL,
+[INS-NIS] varchar(10) NOT NULL,
 [lieu de résidence] nvarchar(100) NOT NULL,
 [année de référence] date NOT NULL, 
 [province] nvarchar(50) NOT NULL, 
@@ -154,10 +154,10 @@ CREATE TABLE BEPopMovement(
 
 
 CREATE TABLE BEPopAgeGroups(
-[INS-NIS] int NOT NULL,
+[INS-NIS] varchar(10) NOT NULL,
 [Lieu de résidence] nvarchar(100) NOT NULL,
 [Année de référence] date NOT NULL, 
-[Sexe] varchar(1),
+[Sexe] char(1),
 [< 5] int,
 [5-9] int,
 [10-14] int,
@@ -197,7 +197,7 @@ CREATE TABLE RefCountries(
 CREATE TABLE RefPopulationUE(
 [pays] nvarchar(75),
 [année de référence] date NOT NULL,
-[sexe] nvarchar(1),
+[sexe] char(1),
 [naissances] int,
 [décès] int,
 [population] int
@@ -212,7 +212,7 @@ CREATE TABLE RefNativePopulationUE(
 )
 
 
-TRUNCATE TABLE BEPopNationalite
+TRUNCATE TABLE BEPopNationalities
 TRUNCATE TABLE BEGeoTranslations
 TRUNCATE TABLE BEPopMovement
 TRUNCATE TABLE BEPopAgeGroups
