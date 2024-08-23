@@ -116,7 +116,7 @@ CREATE TABLE BEPopNationalities (
 [Australie] int,
 [Océanie (autres] int,
 [Indéterminés/Apatrides] int,
-)
+);
 
 
 CREATE TABLE BEGeoTranslations(
@@ -126,14 +126,17 @@ CREATE TABLE BEGeoTranslations(
 [français] nvarchar(75) COLLATE LATIN1_GENERAL_100_CI_AS_SC_UTF8,
 [nederlands] nvarchar(75) COLLATE LATIN1_GENERAL_100_CI_AS_SC_UTF8,
 [début validité] date,
-[fin validité] date
-)
+[fin validité] date,
+[arrondissement] nvarchar(35) COLLATE LATIN1_GENERAL_100_CI_AS_SC_UTF8,
+[province] nvarchar(25) COLLATE LATIN1_GENERAL_100_CI_AS_SC_UTF8,
+[région] nvarchar(25) COLLATE LATIN1_GENERAL_100_CI_AS_SC_UTF8
+);
 
 
 CREATE TABLE BEPopMovement(
 [INS-NIS] nvarchar(10) COLLATE LATIN1_GENERAL_100_CI_AS_SC_UTF8,
 [lieu de résidence] nvarchar(100) COLLATE LATIN1_GENERAL_100_CI_AS_SC_UTF8,
-[année de référence] date NOT NULL, 
+[année de référence] date, 
 [province] nvarchar(50) COLLATE LATIN1_GENERAL_100_CI_AS_SC_UTF8, 
 [population totale] int,
 [naissances] int,
@@ -149,35 +152,19 @@ CREATE TABLE BEPopMovement(
 [ajustement statistique] int,
 [abandons nationalité belge] int,
 [demandes nationalité belge] int
-)
+);
 
 
-CREATE TABLE BEPopAgeGroups(
+CREATE TABLE BEPopAge(
 [INS-NIS] nvarchar(10) COLLATE LATIN1_GENERAL_100_CI_AS_SC_UTF8,
-[Lieu de résidence] nvarchar(100) COLLATE LATIN1_GENERAL_100_CI_AS_SC_UTF8,
-[Année de référence] date NOT NULL, 
-[Sexe] nvarchar(1),
-[< 5] int,
-[5-9] int,
-[10-14] int,
-[15-19] int,
-[20-24] int,
-[25-29] int,
-[30-34] int,
-[35-39] int,
-[40-44] int,
-[45-49] int,
-[50-54] int,
-[55-59] int,
-[60-64] int,
-[65-69] int,
-[70-74] int,
-[75-79] int,
-[80-84] int,
-[85-89] int,
-[90-94] int,
-[95 <] int,
-)
+[lieu de résidence] nvarchar(100) COLLATE LATIN1_GENERAL_100_CI_AS_SC_UTF8,
+[sexe] nvarchar(1),
+[nationalité] nvarchar(3),
+[état civil] nvarchar(20) COLLATE LATIN1_GENERAL_100_CI_AS_SC_UTF8,
+[âge] int,
+[population] int,
+[année de référence] date 
+);
 
 
 
@@ -189,7 +176,7 @@ CREATE TABLE RefCountries(
 [continent] nvarchar(30) COLLATE LATIN1_GENERAL_100_CI_AS_SC_UTF8,
 [membre_ue] int,
 [permis_travail_requis] int
-)
+);
 
 
 
@@ -200,7 +187,7 @@ CREATE TABLE RefPopulationUE(
 [naissances] int,
 [décès] int,
 [population] int
-)
+);
 
 
 
@@ -208,16 +195,16 @@ CREATE TABLE RefNativePopulationUE(
 [pays] nvarchar(75) COLLATE LATIN1_GENERAL_100_CI_AS_SC_UTF8,
 [année de référence] date NOT NULL,
 [population native] int
-)
+);
 
 
 TRUNCATE TABLE BEPopNationalities
 TRUNCATE TABLE BEGeoTranslations
 TRUNCATE TABLE BEPopMovement
-TRUNCATE TABLE BEPopAgeGroups
+TRUNCATE TABLE BEPopAge
 TRUNCATE TABLE RefCountries
 TRUNCATE TABLE RefPopulationUE
-TRUNCATE TABLE RefNativePopulationUE
+TRUNCATE TABLE RefNativePopulationUE;
 
 -- Use in case a user cannot create database diagrams
 -- ALTER AUTHORIZATION ON DATABASE::BelgiumPopulation TO sa;
