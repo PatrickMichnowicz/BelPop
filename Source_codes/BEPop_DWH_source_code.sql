@@ -10,7 +10,7 @@ CREATE TABLE D_pays(
 [continent] nvarchar(30),
 [membre_UE] int, 
 [permis_travail_requis] int,
-CONSTRAINT SK_pays PRIMARY KEY([id pays])
+CONSTRAINT SK_pays PRIMARY KEY([id_pays])
 );
 
 
@@ -23,22 +23,22 @@ CREATE TABLE D_commune(
 [région] nvarchar(25),
 [date_début] date,
 [date_fin] date,
-CONSTRAINT SK_commune PRIMARY KEY([id commune])
+CONSTRAINT SK_commune PRIMARY KEY([id_commune])
 );
 
 
 CREATE TABLE JD_groupes(
 [id_groupe] int IDENTITY(1,1),
-[état_civil] nvarchar(15),
+[état_civil] nvarchar(20),
 [sexe] nvarchar(1),
 [âge] int,
 [nationalité] nvarchar(10),
-CONSTRAINT SK_démographie PRIMARY KEY([id_démographie])
+CONSTRAINT SK_groupes PRIMARY KEY([id_groupe])
  );
 
 
 CREATE TABLE D_date(
-[id_date] int IDENTITY(1,1),
+[id_date] int,
 [date_date] date,
 [année_num] int,
 [mois_num] int,
@@ -46,6 +46,40 @@ CREATE TABLE D_date(
 [jour_num] int
 CONSTRAINT SK_date PRIMARY KEY([id_date])
 );
+
+
+
+/***************************************************************************************************************************/
+
+DECLARE @CurrentDate DATETIME = '01/01/1830'
+DECLARE @EndDate DATETIME = '12/31/2050'
+
+WHILE @CurrentDate < @EndDate
+BEGIN
+   INSERT INTO D_date(
+    [id_date],
+	[date_date],
+	[année_num],
+	[mois_num],
+	[mois_nom],
+	[jour_num]
+      )
+
+   SELECT 
+      [id_date] = (YEAR(@CurrentDate)*10000) + (MONTH(@CurrentDate)*100) + DAY(@CurrentDate),
+	  [date_date] = @CurrentDate,
+      [année_num] = YEAR(@CurrentDate),
+      [mois_num] = MONTH(@CurrentDate),
+      [mois_nom] = DATENAME(mm, @CurrentDate),
+      [jour_num] = DAY(@CurrentDate)
+
+   SET @CurrentDate = DATEADD(YY, 1, @CurrentDate)
+END
+GO
+
+
+/***************************************************************************************************************************/
+
 
 
 CREATE TABLE F_pop_mouvement(
@@ -73,7 +107,7 @@ CREATE TABLE F_pop_nationalité(
 [pays] int,
 [sexe] nvarchar(1),
 [population] int,
-CONSTRAINT SK_pop_nationalités PRIMARY KEY([id_pop_mouvement]),
+CONSTRAINT SK_pop_nationalités PRIMARY KEY([id_pop_nationalité]),
 CONSTRAINT FK_nationalité_commune FOREIGN KEY([lieu_résidence]) REFERENCES D_commune([id_commune]),
 CONSTRAINT FK_nationalité_date FOREIGN KEY([année_référence]) REFERENCES D_date([id_date]),
 CONSTRAINT FK_nationalité_pays FOREIGN KEY([pays]) REFERENCES D_pays([id_pays])
@@ -89,45 +123,6 @@ CREATE TABLE F_pop_âge(
 CONSTRAINT SK_pop_âge PRIMARY KEY([id_pop_démographie]),
 CONSTRAINT FK_démographie_commune FOREIGN KEY([lieu_résidence]) REFERENCES D_commune([id_commune]),
 CONSTRAINT FK_démographie_date FOREIGN KEY([année_référence]) REFERENCES D_date([id_date]),
-CONSTRAINT FK_démographie_groupes FOREIGN KEY([démographie]) REFERENCES JD_groupes([id_groupe])
+CONSTRAINT FK_démographie_groupes FOREIGN KEY([groupe]) REFERENCES JD_groupes([id_groupe])
 );
 
-
-
-
-/***************************************************************************************************************************/
-
-DECLARE @CurrentDate DATETIME = '01/01/1830'
-DECLARE @EndDate DATETIME = '12/31/2025'
-
-WHILE @CurrentDate < @EndDate
-BEGIN
-   INSERT INTO D_Date(
-    [Date],
-	[Year],
-	[Quarter],
-	[Month],
-	[MonthName],
-	[Week],
-	[Day],
-	[DayName],
-	[DayOfYear]
-      )
-
-   SELECT 
-      [Date] = @CurrentDate,
-      [Year] = YEAR(@CurrentDate),
-      [Quarter] = DATEPART(q, @CurrentDate),
-      [Month] = MONTH(@CurrentDate),
-      [MonthName] = DATENAME(mm, @CurrentDate),
-      [Week] = DATEPART(wk, @CurrentDate),
-      [Day] = DAY(@CurrentDate),
-      [DayName] = DATENAME(dw, @CurrentDate),
-	  [DayOfYear] = DATEPART(dy, @CurrentDate)
-
-   SET @CurrentDate = DATEADD(DD, 1, @CurrentDate)
-END
-GO
-
-
-/***************************************************************************************************************************/
